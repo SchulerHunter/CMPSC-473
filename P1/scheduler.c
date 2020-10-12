@@ -104,6 +104,7 @@ struct Thread *findThread(int id) {
 			return availableThreads[i];
 		}
 	}
+	pthread_cond_init(&(thread->threadCond), NULL);
 	return thread;
 }
 
@@ -265,7 +266,7 @@ int schedule_me(float currentTime, int tid, int remainingTime, int tPrio) {
 			thisThread->threadId = tid;
 			if (cpuType == MLFQ) tPrio = 1;
 			thisThread->threadPrio = tPrio;
-			pthread_cond_init(&(thisThread->threadCond), NULL);
+			thisThread->runningTime = 0;
 			thisThread->semaphore = -1;
 		}
 		
@@ -311,14 +312,24 @@ int schedule_me(float currentTime, int tid, int remainingTime, int tPrio) {
 
 	pthread_mutex_unlock(&cpuMutex);
 	if (remainingTime == 0) {
-		pthread_cond_signal(&(findThread(currentThread)->threadCond));
-		free(thisThread);
+		if (currentThread > 0) pthread_cond_signal(&(findThread(currentThread)->threadCond));
 		if (currentThread == -1) {
+			// Free each thread
+			for (int i = 0; i < threadCount; i++) {
+				pthread_cond_destroy(&(availableThreads[i]->threadCond));
+				free(availableThreads[i]);
+				availableThreads[i] = NULL;
+			}
+
 			// Free available thread memory
 			free(availableThreads);
+			availableThreads = NULL;
+			threadCount = 0;
+
 			// Free each thread queues items
 			for (int i = 0; i < PRIO_MAX; i++) {
 				free(threadQueue[i].items);
+				threadQueue[i].items = NULL;
 			}
 		}
 	}
