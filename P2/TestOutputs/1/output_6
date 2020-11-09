@@ -1,0 +1,118 @@
+Allocation Error A
+Allocation Error B
+Start of first Chunk C is: 8
+Start of first Chunk C is: 1036
+Start of first Chunk C is: 2064
+Start of first Chunk C is: 3092
+Start of first Chunk C is: 4120
+Start of first Chunk C is: 5148
+Start of first Chunk C is: 6176
+Start of first Chunk C is: 7204
+Start of first Chunk C is: 8232
+Start of first Chunk C is: 9260
+Start of first Chunk C is: 10288
+Start of first Chunk C is: 11316
+Start of first Chunk C is: 12344
+Start of first Chunk C is: 13372
+Start of first Chunk C is: 14400
+Start of first Chunk C is: 15428
+Start of first Chunk C is: 16456
+Start of first Chunk C is: 17484
+Start of first Chunk C is: 18512
+Start of first Chunk C is: 19540
+Start of first Chunk C is: 20568
+Start of first Chunk C is: 21596
+Start of first Chunk C is: 22624
+Start of first Chunk C is: 23652
+Start of first Chunk C is: 24680
+Start of first Chunk C is: 25708
+Start of first Chunk C is: 26736
+Start of first Chunk C is: 27764
+Start of first Chunk C is: 28792
+Start of first Chunk C is: 29820
+Start of first Chunk C is: 30848
+Start of first Chunk C is: 31876
+Start of first Chunk C is: 32904
+Start of first Chunk C is: 33932
+Start of first Chunk C is: 34960
+Start of first Chunk C is: 35988
+Start of first Chunk C is: 37016
+Start of first Chunk C is: 38044
+Start of first Chunk C is: 39072
+Start of first Chunk C is: 40100
+Start of first Chunk C is: 41128
+Start of first Chunk C is: 42156
+Start of first Chunk C is: 43184
+Start of first Chunk C is: 44212
+Start of first Chunk C is: 45240
+Start of first Chunk C is: 46268
+Start of first Chunk C is: 47296
+Start of first Chunk C is: 48324
+Start of first Chunk C is: 49352
+Start of first Chunk C is: 50380
+Start of first Chunk C is: 51408
+Start of first Chunk C is: 52436
+Start of first Chunk C is: 53464
+Start of first Chunk C is: 54492
+Start of first Chunk C is: 55520
+Start of first Chunk C is: 56548
+Start of first Chunk C is: 57576
+Start of first Chunk C is: 58604
+Start of first Chunk C is: 59632
+Start of first Chunk C is: 60660
+Start of first Chunk C is: 61688
+Start of first Chunk C is: 62716
+Start of first Chunk C is: 63744
+Start of first Chunk C is: 64772
+Start of first Chunk C is: 131080
+Start of first Chunk C is: 132108
+Start of first Chunk C is: 133136
+Start of first Chunk C is: 134164
+Start of first Chunk C is: 135192
+Start of first Chunk C is: 136220
+Start of first Chunk C is: 137248
+Start of first Chunk C is: 138276
+Start of first Chunk C is: 139304
+Start of first Chunk C is: 140332
+Start of first Chunk C is: 141360
+Start of first Chunk C is: 142388
+Start of first Chunk C is: 143416
+Start of first Chunk C is: 144444
+Start of first Chunk C is: 145472
+Start of first Chunk C is: 146500
+Start of first Chunk C is: 147528
+Start of first Chunk C is: 148556
+Start of first Chunk C is: 149584
+Start of first Chunk C is: 150612
+Start of first Chunk C is: 151640
+Start of first Chunk C is: 152668
+Start of first Chunk C is: 153696
+Start of first Chunk C is: 154724
+Start of first Chunk C is: 155752
+Start of first Chunk C is: 156780
+Start of first Chunk C is: 157808
+Start of first Chunk C is: 158836
+Start of first Chunk C is: 159864
+Start of first Chunk C is: 160892
+Start of first Chunk C is: 161920
+Start of first Chunk C is: 162948
+Start of first Chunk C is: 163976
+Start of first Chunk C is: 165004
+Start of first Chunk C is: 166032
+Start of first Chunk C is: 167060
+freed object C at 167060
+freed object C at 157808
+freed object C at 166032
+freed object C at 165004
+freed object C at 156780
+freed object C at 33932
+freed object C at 22624
+freed object C at 12344
+freed object C at 11316
+freed object C at 154724
+freed object C at 16456
+freed object C at 28792
+freed object C at 33932
+freed object C at 133136
+freed object C at 8
+Allocation Error D

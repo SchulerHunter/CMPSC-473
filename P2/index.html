@@ -1,0 +1,163 @@
+
+<html lang="en"><head><!-- meta ignored --><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" href="skins/larry/embed.min.css?s=1525002593">
+<script type="text/javascript">
+</script>
+
+</head>
+<body>
+
+<div>
+<h2 align="center" style="text-align: center">CSE 473 Project 1: Thread Schedulers
+</h2>
+<p align="center" style="text-align: center"><b>(due Oct 9 thru Github - NO EXTENSIONS WILL BE GIVEN!)</b></p>
+<div style="text-align: center">
+<hr size="2" width="100%" align="center" />
+</div>
+
+<h3>Please direct all your project-related questions/clarifications to the TAs, either in person or by email.
+  <br />
+<p>
+
+   <h3>Academic Integrity Statement:</h3>
+   <i>
+     The University defines academic integrity as the pursuit of scholarly activity in an open, honest
+     and responsible manner. All students should act with personal integrity, respect other students'
+     dignity, rights and property, and help create and maintain an environment in which all can succeed
+     through the fruits of their efforts (refer to Senate Policy 49-20. Dishonesty of any kind will not
+     be tolerated in this course. Dishonesty includes, but is not limited to, cheating, plagiarizing,
+     fabricating information or citations, facilitating acts of academic dishonesty by others, having
+     unauthorized possession of examinations, submitting work of another person or work previously used
+     without informing the instructor, or tampering with the academic work of other students. Students
+     who are found to be dishonest will receive academic sanctions and will be reported to the University's
+     Office of Student Conduct for possible further disciplinary sanctions (refer to Senate Policy G-9).
+     The Academic Integrity policy for the Department of Computer Science and Engineering for programming
+     projects can be explicitly found at <a href='https://www.eecs.psu.edu/students/resources/EECS-CSE-Academic-Integrity.aspx'>
+       EECS Academic Integrity Policy</a>. Please go through it carefully and do ask the instructor
+     for any clarifications if something is not clear.<br/>
+     <p>
+     <font color='red'>No exchange of code is permitted between teams.</font> Both giver(s) and taker(s) will be punished harshly
+     with a zero in the Project Grade. Hence, make sure that your code is not visible to anyone outside your team! </i>
+  </i>
+
+<h3>Description</h3>
+<P>In this project, you will learn about Memory management. This
+project requires you to implement two memory
+allocation/deallocation schemes, specifically <strong>Buddy system</strong> and <strong>Slab Allocation</strong>. One of the jobs of the
+memory management subsystem is to service memory requests by matching
+the size of the request with a large enough hole, from which to
+satisfy the request. The functioning of each of these schemes has been discussed in class.
+
+You will be given the starting address from where memory is to be allocated (<b> start_of_memory </b> pointer) together with the size of this memory region (<b> mem_size = 1 MB</b>). The
+minimum size that your Buddy system should allocate is 1KB.
+</p>
+<P>
+<p>
+  <h3> Requirements</h3>
+  <p> You will be given test programs, each of performing many allocation and deallocation requests which you will need to implement.  </p>
+  <p>
+    The test files will first call setup**** passing a pointer to the memory region ((<b> start_of_memory </b> pointer) together with the size of this region (mem_size = 1 MB), and the subsequent policy (Buddy or Slab) to be used for the allocations. 
+  </p>
+<h3> Deliverables</h3>
+
+To implement the allocation policies, you should implement the following three interfaces in C and all these functions should be provided in a file called <strong> my_memory.c </strong>, whose semantics are described below.
+<p>
+
+  <div style="background: #cccccc;">
+  <dl>
+  <dt><code>
+        void <strong>setup</strong>(int <strong>malloc_type</strong>, int <strong>mem_size</strong>, void* <strong>start_of_memory</strong>);
+  </code></dt>
+  <dd> The purpose of <code><strong>setup()</strong></code> is to perform any initialization of variables that you may need, specify and give you the pointer to the total amount of memory at your disposal, and also specify the type of memory allocator.
+    <br />The parameter <code><strong>malloc_type</strong></code> will be either 0 or 1, denoting 0-Buddy System and 1-Slab Allocation.</dd>
+  </dl>
+    <dl>
+  <dt><code>
+        void* <strong>my_alloc</strong>(int <strong>size</strong>); // returns a pointer to the allocated memory</code></dt>
+  <dd>This function allocates <strong><i>size</i></strong> bytes of memory from that 1MB chunk of memory that is available for you (using the <i>start_of_memory</i> pointer) using the specified allocation algorithm. On allocation, it returns a pointer to the start of allocated memory. 
+  If a request cannot be accommodated by the scheme, this function should return -1. 
+  Note that the user programs expect that all the <code><i>size</i></code> bytes, starting from the first byte pointed to by the returned pointer, is available to it.</li>
+  </dd>
+  </dl>
+  <dl>
+  <dt><code>void <strong>my_free</strong>(void* <strong>ptr</strong>); </code></dt>
+  <dd>
+This function deallocates the memory segment being passed by the pointer. Note that when free-ing, the resulting free segment should be merged with relevant neighboring holes (as per the algorithm/scheme) whenever possible to create holes of larger size. No size argument is being explicitly passed in this call.
+  </dd>
+  </dl>
+</div>
+<b> test[x].c </b> will call these interface functions that you will write, and test their working. Even though a few such test files will be made available,
+ you should more extensively stress-test your code with more such test cases that you can write yourself.
+ In the final evaluation, several other test inputs may be used to verify the correctness of your implementation.
+
+</P>
+
+<h3> Implementation direction </h3>
+<P>NOTE:
+</P>  The size parameter is given only in <I>my_malloc</I> and not in
+	<I>my_free</I>. However it is necessary to know the size of what is
+	being freed. This should be handled by using the first 4 bytes of the allocated segment to contain
+  the size.  However, programs would assume that all the space, starting from
+  the first byte of the returned pointer, is available to be used. Hence, you should ensure that the pointer that  <I>my_malloc()</I> returns
+  points to the byte immediately after these 4 bytes (header) containing the size.
+	</P>
+
+<h4>Buddy Allocator</h4>
+<ul>
+  <li> The minimum chunk of memory that the Buddy System can allocate is 1KB.
+  </li>
+  <li>
+    Maintain the free (holes) list sorted by increasing addresses. 
+    Buddy will need to maintain them sorted by address, individually for different sizes (of powers of 2) 
+    as discussed in class. 
+  </li>
+  <li>
+    Whenever there is a choice of multiple holes that a scheme allows, always pick the hole with the lowest starting address.
+  </li>
+  <li>
+    The 4 byte header is used to maintain the size of the allocated chunk.
+  </li>
+</ul>
+<h4> Slab Allocator</h4>
+<ul>
+  <li> The Slab size is fixed at N_OBJS_PER_SLAB which is defined in memory.c. Note that each slab will only contain the objects of the appropriate type/size together with its header, and the Slab Descriptor Table itself is maintained as a separate data structure (you can use the system malloc for allocating it). Please use the data structure explained in class for the Slab Descriptor Table.
+  </li>
+</ul>
+
+
+<P><FONT FACE="Times New Roman, serif"><FONT SIZE=3><B>What to turn in:</B></FONT></FONT></P>
+<OL>
+	<LI><P><FONT FACE="Times New Roman, serif"><FONT SIZE=3> <B>my_memory.c</B>  (and if needed, its header file),
+        containing the above three interface functions which implement all 2 allocation schemes.
+        </FONT></FONT>
+	</P>
+	<LI><P><FONT FACE="Times New Roman, serif"><FONT SIZE=3>A report to
+	clarify the assumptions, design choices, the reasons that you
+	made such decisions, and breakdown of the contribution of each member to the project.
+	Also remember to include any special instructions for testing your code.
+         </FONT></FONT>
+	</P>
+</OL>
+
+***************
+Even though you will work in groups of up to two (individual
+projects are also allowed), each of you should be fully familiar with
+the entire code. You should also ensure that there is a fair division
+of labor between the members. You can either
+work with the same person as you did in the first project, or form new groups (to gain experience working
+with different people).
+</P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0in">The project source code and report are due <FONT COLOR="#ff0000">before
+11:59 </FONT>through Github.
+You need to set up an appointment with the TA to demonstrate your
+implementation and answer a range of questions related to the entire
+project (even though an individual may have worked on only one part).
+<i> Academic dishonesty of any kind will not be tolerated. </i>
+</P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0in"><BR><BR><A HREF="#top">top</A>
+</P>
+<HR>
+<P><A NAME="node2"></A><BR><BR>
+</P>
+</BODY>
+</HTML>

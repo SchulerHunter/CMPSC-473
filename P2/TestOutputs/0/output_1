@@ -1,0 +1,42 @@
+Start of first Chunk Z is: 4
+Start of first Chunk Z is: 2052
+Start of first Chunk Z is: 4100
+Start of first Chunk Z is: 6148
+Start of first Chunk Z is: 8196
+Start of Chunk A is: 16388
+Start of Chunk C is: 10244
+Start of Chunk C is: 11268
+Start of Chunk C is: 12292
+Start of Chunk C is: 13316
+Start of Chunk C is: 14340
+Start of Chunk C is: 15364
+Start of Chunk C is: 24580
+Start of Chunk C is: 25604
+Start of Chunk C is: 26628
+Start of Chunk C is: 27652
+Start of Chunk C is: 28676
+Start of Chunk C is: 29700
+Start of Chunk C is: 30724
+Start of Chunk C is: 31748
+Start of Chunk C is: 32772
+Start of Chunk C is: 33796
+Start of Chunk C is: 34820
+Start of Chunk C is: 35844
+Start of Chunk C is: 36868
+Start of Chunk C is: 37892
+freed object Z at 4
+freed object Z at 2052
+freed object Z at 4100
+freed object Z at 6148
+freed object Z at 8196
+Start of Chunk U is: 8196
+Start of Chunk U is: 38916
+Start of Chunk U is: 4
+Start of Chunk U is: 2052
+Start of Chunk U is: 4100
+Start of Chunk V is: 6148
+Start of Chunk V is: 7172
+Start of Chunk V is: 40964
+Start of Chunk V is: 41988
+Start of Chunk V is: 43012
+Start of Chunk V is: 44036
