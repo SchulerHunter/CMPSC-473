@@ -67,5 +67,8 @@ Virtual Memory Page Manager
 - `resetPage` is a function which resets the passed pages metadata.
 
 ## Challenges Faced
-- Recusivity: I had a decent struggle attempting to get the `buddyAllocate` and `buddyDeallocate` to run recursively.
-- Memory Calculations: Calculating the addresses for slab allocated object and hole parity seemed more difficult then it truly was.
+- Triple Chance Loop: I initially struggled with tracking the clockIndex in the triple cycle loop. I discovered a small bug that altered my output where the eviction occured on the last page in the list, the cycle index was not reset.
+- Pointer arithmatic: Rather than dealing with memory addresses as void pointers, I implemented my solution using char pointers so that `<addr> + 1` was only one byte away.
+
+## Tradeoff
+- This program utilizes a double ended doubly-linked list for constant time insertion and removal. The trade was an addiotional 16 bytes for the `pageListHead` and `pageListTail` variables, as well as 16 bytes per page for `prev` and `next` in order to prevent O(n) insertion and deletion in a single ended linked list or array.
