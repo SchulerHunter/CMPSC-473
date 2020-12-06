@@ -1,0 +1,13 @@
+Page Size: 4096
+Num Frames: 4
+type	virt-page	evicted-virt-page	write-back	phy-addr
+0		1		-1		0		0x003c
+0		2		-1		0		0x1054
+0		4		-1		0		0x2014
+0		6		-1		0		0x302c
+2		1		-1		0		0x0030
+2		2		-1		0		0x1050
+0		3		4		0		0x203c
+1		4		6		0		0x3030
+4		1		-1		0		0x0038
+3		2		-1		0		0x1050

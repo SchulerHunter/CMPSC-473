@@ -1,0 +1,9 @@
+read 1 8 0
+write 2 16 12
+read 0 8 0
+read 3 8 0
+write 4 16 12
+read 0 8 0
+write 6 16 12
+write 5 16 12
+
